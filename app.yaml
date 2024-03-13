@@ -1,7 +1,4 @@
-runtime: python27
-api_version: 1
-threadsafe: true
-
+runtime: python38
 handlers:
 - url: /.*
-  script: task1d.app
+  script: auto
