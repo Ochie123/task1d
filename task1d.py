@@ -1,21 +1,14 @@
-from flask import Flask, request
-import datetime
+from datetime import datetime
+import webapp2
 
-app = Flask(__name__)
+class MainPage(webapp2.RequestHandler):
+    def get(self):
+        self.response.write("Name: Your Name")
+        self.response.write("<br>") 
+        self.response.write("Student ID: Your Student ID")
+        self.response.write("<br>")
+        self.response.write("Date and Time: " + str(datetime.now()))
 
-# Defining the name and student ID
-name = "Your Name"
-student_id = "Your Student ID"
-
-@app.route('/')
-def display_info():
-    # Getting current date and time
-    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    
-    # Displaying the message
-    message = f"Name: {name}<br>Student ID: {student_id}<br>Browser Access Time: {now}"
-    
-    return message
-
-if __name__ == '__main__':
-    app.run(debug=True)
+app = webapp2.WSGIApplication([
+    ('/', MainPage),
+], debug=True)
